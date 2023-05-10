@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>RSS阅读器</title>
+    <!-- 加载MDUI样式表 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdui/1.0.2/css/mdui.min.css">
+    <!-- 加载Material Design图标字体 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="./assets/main.css">
+	<script id="actload"></script>
+</head>
+
+<body class="
+mdui-drawer-body-left
+mdui-appbar-with-toolbar
+mdui-theme-primary-indigo
+mdui-theme-accent-pink
+mdui-theme-layout-auto">
+    <header class="appbar mdui-appbar mdui-appbar-fixed">
+        <div class="mdui-toolbar mdui-color-theme">
+        <span
+            class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"
+            mdui-drawer="{target: '#cadrawer', swipe: true}"
+          >
+            <i class="mdui-icon material-icons">menu</i>
+          </span>
+          <a class="mdui-typo-headline nav-title" href="#">RSS阅读器</a>
+        </div>
+    </header>
+    <div class="mdui-drawer" id="cadrawer">
+        <ul class="mdui-list">
+        <a href="#page=Main" onclick="loadPage('main')">
+          <li class="mdui-list-item mdui-ripple">
+            <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
+            <div class="mdui-list-item-content">主页</div>
+          </li>
+        </a>
+        <a href="#page=Setting" onclick="loadPage('setting')">
+            <li class="mdui-list-item mdui-ripple">
+              <i class="mdui-list-item-icon mdui-icon material-icons">settings</i>
+              <div class="mdui-list-item-content">设置</div>
+            </li>
+          </a>
+          <li class="mdui-subheader">您订阅的</li>
+        </ul>
+      </div>
+    <div class="mdui-container">
+		<div id="Main">
+			<ul class="mdui-list" id="rss-feed">加载中！</ul>
+		</div>
+        <div id="Setting" style="display: none;">
+            <h1 class="mdui-typo-display-1 ">设置</h1><br>
+			<div id="SettingO">设置02组件状态: 加载中</div>
+			<div id="SettingI">设置01组件状态: 加载中</div>
+        </div>
+    </div>
+    <!-- 加载MDUI脚本 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdui/1.0.2/js/mdui.min.js"></script>
+	<script src="./assets/main.js"></script>
+</body>
+
+</html>
