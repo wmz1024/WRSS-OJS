@@ -6,7 +6,7 @@ self.addEventListener('fetch', function(event) {
   if (//event.request.headers.get('Content-Type').indexOf('image') !== -1 || 
   /https?:\/\/.*\.(jpe?g|png|gif|bmp|webp)/i.test(event.request.url) 
   || /https?:\/\/img04\.sogoucdn\.com/i.test(event.request.url)) {
-    if(!/https?:\/\/i0\.hdslb\.com/i.test(event.request.url)){
+    if(!/https?:\/\/i.\.hdslb\.com/i.test(event.request.url)){
     const imageUrl = event.request.url;
     if(ipu){
       var newUrl = ipu + imageUrl;

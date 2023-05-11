@@ -138,6 +138,11 @@ function renderRSSFeed(e) {
             <p>您没有设置任何有效的RSS/Feed源, 请前去设置</p>
         </div>
         `
+    }else{
+        const iframes = document.getElementsByTagName('iframe');
+for (let i = 0; i < iframes.length; i++) {
+  iframes[i].setAttribute('sandbox', '');
+}
     }
 }
 
