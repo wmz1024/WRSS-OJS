@@ -71,9 +71,13 @@ function loadPage(a,urlcb) {
         document.getElementById("rss-feed").innerHTML = "加载中！";
         if (getListpa(localStorage.getItem("rsssubdata"), "utn",urlcb)!=""){
             document.querySelector(".welcome-WFeed").innerHTML = getListpa(localStorage.getItem("rsssubdata"), "utn",urlcb)+" 的订阅";
+            document.querySelector(".info-extra").innerHTML=``
         }
         else{
             document.querySelector(".welcome-WFeed").innerHTML = "陌生订阅";
+            document.querySelector(".info-extra").innerHTML=`
+<span>订阅地址: ${urlcb} </span><a>添加到WRSS （暂不支持）</a>
+            `
         }
         mRSSload([urlcb])
     }

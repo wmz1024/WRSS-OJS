@@ -1,5 +1,17 @@
 # WRSS - Setting
 
+## 有意思的使用方法
+
+### 作为网站RSS预览器
+
+考虑到用户没有RSS订阅器的话 把RSS地址直接改成本RSS管理器即可
+
+使用方法
+
+```
+https://feed.wmza.cn/#page=LoadFeed&url=您站的订阅URL
+```
+
 ## Proxy问题
 
 备注：目前WRSS并没有官方Proxy服务器 某些订阅<strong>可能不能加载</strong>
