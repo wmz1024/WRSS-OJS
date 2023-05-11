@@ -1,12 +1,50 @@
+function XMLProxySubmit(){
+    localStorage.setItem("XMLProxyURL", document.getElementById("XMLProxyinput").value);
+    mdui.snackbar({
+      message: 'XMLProxy设置成功',
+      position: 'right-bottom'
+    });
+}
+function ImageProxySubmit(){
+    localStorage.setItem("ImageProxyURL", document.getElementById("ImageProxyinput").value);
+    mdui.snackbar({
+      message: 'ImageProxy设置成功',
+      position: 'right-bottom'
+    });
+}
+
 function LoadNC(){
     document.getElementById("SettingO").innerHTML =`
     <div class="mdui-typo-headline" style="padding-left: 0.5rem;padding-top: 0.5rem;"><strong>通用</strong></div>
     <div id="SettingO-MainA" class="mdui-card-content">
-    <span>更新时间排序&nbsp;&nbsp;<label class="mdui-switch">
+    <div class="cadata01"><strong>订阅时间排序</strong>  <span>更新时间排序&nbsp;&nbsp;<label class="mdui-switch">
     <input type="checkbox" id="TSSet" />
     <i class="mdui-switch-icon"></i>
 </label>&nbsp;&nbsp;发布时间排序</span></div>
+<div class="cadata01"><strong>XML订阅代理</strong>
+<div class="mdui-textfield">
+<label class="mdui-textfield-label">链接</label>
+<input class="mdui-textfield-input" type="text" id="XMLProxyinput">
+</div>
+<button class="mdui-btn mdui-color-theme-accent mdui-ripple" id="XMLProxyinputsubmit" onclick="XMLProxySubmit()">提交</button>
+</div>
+
+<div class="cadata01"><strong>图片获取代理</strong>
+<div class="mdui-textfield">
+<label class="mdui-textfield-label">链接</label>
+<input class="mdui-textfield-input" type="text" id="ImageProxyinput">
+</div>
+<button class="mdui-btn mdui-color-theme-accent mdui-ripple" id="ImageProxyinputsubmit" onclick="ImageProxySubmit()">提交</button>
+</div>
+
+</div>
     `
+    if(localStorage.getItem("XMLProxyURL")){
+        document.getElementById("XMLProxyinput").value = localStorage.getItem("XMLProxyURL");
+    }
+    if(localStorage.getItem("ImageProxyURL")){
+        document.getElementById("ImageProxyinput").value = localStorage.getItem("ImageProxyURL");
+    }
 }
 function bindSwitchStateWithLocalStorage(switchElement, localStorageKey) {
     const switchInput = switchElement.querySelector('input[type="checkbox"]');
@@ -70,14 +108,14 @@ var setjsa = {
             if (this.data.desub[i].name === c) {
                 mdui.snackbar({
                     message: '该站点名称已存在',
-                    position: 'bottom'
+                    position: 'right-bottom'
                 });
                 return
             }
             if (this.data.desub[i].url === d) {
                 mdui.snackbar({
                     message: '该RSS/ATOM链接已存在',
-                    position: 'bottom'
+                    position: 'right-bottom'
                 });
                 return
             }
@@ -85,7 +123,7 @@ var setjsa = {
         if (c === '' || d === '') {
             mdui.snackbar({
                 message: '不能为空！',
-                position: 'bottom'
+                position: 'right-bottom'
             })
         } else {
             var e = {
@@ -97,9 +135,10 @@ var setjsa = {
             this.renderList();
             a.value = '';
             b.value = '';
+            renderFeedList()
             mdui.snackbar({
                 message: '已添加：' + c,
-                position: 'bottom'
+                position: 'right-bottom'
             })
         }
     },
@@ -108,9 +147,10 @@ var setjsa = {
         this.data.desub.splice(b, 1);
         localStorage.setItem('rsssubdata', JSON.stringify(this.data));
         a.remove();
+        renderFeedList()
         mdui.snackbar({
             message: '已删除',
-            position: 'bottom',
+            position: 'right-bottom',
         })
     }
 };
