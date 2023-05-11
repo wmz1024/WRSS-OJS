@@ -15,6 +15,7 @@ function ImageProxySubmit(){
 
 function LoadNC(){
     document.getElementById("SettingO").innerHTML =`
+    <p>备注：目前WRSS并没有官方Proxy服务器 某些订阅<strong>可能不能加载</strong>，解决办法请查看设置文档</p>
     <div class="mdui-typo-headline" style="padding-left: 0.5rem;padding-top: 0.5rem;"><strong>通用</strong></div>
     <div id="SettingO-MainA" class="mdui-card-content">
     <div class="cadata01"><strong>订阅时间排序</strong>  <span>更新时间排序&nbsp;&nbsp;<label class="mdui-switch">
