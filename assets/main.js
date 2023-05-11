@@ -3,6 +3,7 @@ var datavc = {
     ipu: localStorage.getItem("ImageProxyURL")
 }
 
+if(!localStorage.getItem('rsssubdata')){localStorage.setItem("rsssubdata",'{"desub":[]}')}
 
 function getListpa(a, b, urlca) {
     var d = [];
