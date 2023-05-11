@@ -60,10 +60,12 @@ function loadPage(a,urlcb) {
             .style = "display: block;";
         document.getElementById("rss-feed").innerHTML = "加载中！";
         document.querySelector(".welcome-WFeed").innerHTML = "👋 欢迎来到WFeed";
+        document.querySelector(".info-extra").innerHTML=``
         mRSSload(getListpa(localStorage.getItem("rsssubdata"), "url"))
     } else if (a == "setting") {
         document.getElementById("Setting")
             .style = "display: block;";
+            document.querySelector(".info-extra").innerHTML=``
         loadJSFile("/assets/utils/nc.js")
     }else if (a == "loadfeed"){
         document.getElementById("Main")
