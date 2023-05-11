@@ -25,3 +25,4 @@ self.addEventListener('fetch', function(event) {
 const handle = async(req)=>{
   return fetch(req)
 }
+
