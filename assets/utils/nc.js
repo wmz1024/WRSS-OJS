@@ -12,12 +12,33 @@ function ImageProxySubmit(){
       position: 'right-bottom'
     });
 }
+function downloadFile(data, filename, type) {
+    const file = new Blob([data], {type: type});
+    const a = document.createElement('a');
+    const url = URL.createObjectURL(file);
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function() {
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);  
+    }, 0);
+  }
+
+function downloadData(){
+    const data = localStorage.getItem('rsssubdata');
+    const jsonData = JSON.stringify(data);
+    downloadFile(jsonData, 'WRSS-'+Date.now()+'.json', 'json');
+}
 
 function LoadNC(){
     document.getElementById("SettingO").innerHTML =`
     <p>备注：目前WRSS并没有官方Proxy服务器 某些订阅<strong>可能不能加载</strong>，解决办法请查看设置文档</p>
     <div class="mdui-typo-headline" style="padding-left: 0.5rem;padding-top: 0.5rem;"><strong>通用</strong></div>
     <div id="SettingO-MainA" class="mdui-card-content">
+    <button class="mdui-btn mdui-color-theme-accent" id="export-btn" onclick="downloadData()">导出配置</button>
+    <label class="mdui-btn mdui-btn-raised mdui-color-theme-accent" for="import-file">导入配置<input type="file" id="import-file" accept=".json" style="display:none;"></label>
     <div class="cadata01"><strong>订阅时间排序</strong>  <span>更新时间排序&nbsp;&nbsp;<label class="mdui-switch">
     <input type="checkbox" id="TSSet" />
     <i class="mdui-switch-icon"></i>
@@ -47,6 +68,7 @@ function LoadNC(){
         document.getElementById("ImageProxyinput").value = localStorage.getItem("ImageProxyURL");
     }
 }
+
 function bindSwitchStateWithLocalStorage(switchElement, localStorageKey) {
     const switchInput = switchElement.querySelector('input[type="checkbox"]');
 
@@ -64,6 +86,20 @@ function bindSwitchStateWithLocalStorage(switchElement, localStorageKey) {
   }
 
 LoadNC()
+document.getElementById('import-file').onchange = function () {
+    const file = this.files[0];
+    const reader = new FileReader();
+    reader.onload = function () {
+      const data = JSON.parse(reader.result);
+      localStorage.setItem('rsssubdata', data); // 存储到LocalStorage
+      renderFeedList()
+      mdui.snackbar({
+        message: '导入成功！',
+        position: 'right-bottom'
+      });
+    };
+    reader.readAsText(file);
+  };
 bindSwitchStateWithLocalStorage(document.querySelector('#TSSet').parentNode, 'TSSet');
 
 var setjsa = {
