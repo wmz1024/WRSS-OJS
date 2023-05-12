@@ -1,10 +1,8 @@
-
+const XMLProxy4ever="https://feed-api.wmza.top/xml.php?origin=";
 var datavc = {
     ipu: localStorage.getItem("ImageProxyURL")
 }
-
 if(!localStorage.getItem('rsssubdata')){localStorage.setItem("rsssubdata",'{"desub":[]}')}
-
 function getListpa(a, b, urlca) {
     var d = [];
     var a = JSON.parse(a);
@@ -235,7 +233,10 @@ function loadRSSFeed(e) {
             if(localStorage.getItem("XMLProxyURL")){
                 s.open("GET", localStorage.getItem("XMLProxyURL")+e[n]);
             }else{
-                s.open("GET", e[n]);
+                if(localStorage.getItem("XPSet")==undefined || localStorage.getItem("XPSet")==null || localStorage.getItem("XPSet")=='false'){
+                    s.open("GET", XMLProxy4ever+e[n]);
+                }else{
+                s.open("GET", e[n]);}
             }}
             catch(err){
                 console.log(err)

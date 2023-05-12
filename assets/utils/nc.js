@@ -34,11 +34,14 @@ function downloadData(){
 
 function LoadNC(){
     document.getElementById("SettingO").innerHTML =`
-    <p>备注：目前WRSS并没有官方Proxy服务器 某些订阅<strong>可能不能加载</strong>，解决办法请查看设置文档</p>
     <div class="mdui-typo-headline" style="padding-left: 0.5rem;padding-top: 0.5rem;"><strong>通用</strong></div>
     <div id="SettingO-MainA" class="mdui-card-content">
     <button class="mdui-btn mdui-color-theme-accent" id="export-btn" onclick="downloadData()">导出配置</button>
     <label class="mdui-btn mdui-btn-raised mdui-color-theme-accent" for="import-file">导入配置<input type="file" id="import-file" accept=".json" style="display:none;"></label>
+    <div class="cadata01"><strong>不使用公共XML代理</strong>  <span>&nbsp;&nbsp;<label class="mdui-switch">
+    <input type="checkbox" id="XPSet" />
+    <i class="mdui-switch-icon"></i>
+</label>&nbsp;&nbsp;</span></div>
     <div class="cadata01"><strong>订阅时间排序</strong>  <span>更新时间排序&nbsp;&nbsp;<label class="mdui-switch">
     <input type="checkbox" id="TSSet" />
     <i class="mdui-switch-icon"></i>
@@ -106,6 +109,7 @@ document.getElementById('import-file').onchange = function () {
   };
 bindSwitchStateWithLocalStorage(document.querySelector('#TSSet').parentNode, 'TSSet');
 bindSwitchStateWithLocalStorage(document.querySelector('#FBSet').parentNode, 'FBSet');
+bindSwitchStateWithLocalStorage(document.querySelector('#XPSet').parentNode, 'XPSet');
 
 var setjsa = {
     data: {
