@@ -21,6 +21,22 @@ https://feed.wmza.cn/#page=LoadFeed&url=您站的订阅URL
  1. 使用插件 Allow CORS: Access-Control-Allow-Origin
  2. 自己手搓Proxy服务器 （官方的在写了在写了🥹）
 
+### 官方的 在做了在做了 🥹🥹🥹
+
+如果你有服务器/虚拟主机 可以尝试使用以下PHP代码来Proxy你的XML订阅代理
+
+```php
+<?php
+$origin = $_GET['origin'];
+header('Access-Control-Allow-Origin: *');
+$xml_string = file_get_contents($origin);
+header('Content-Type: application/xml');
+echo $xml_string;
+```
+
+官方因为没有钱 目前还没有给大家用的😭😭😭😭😭😭
+
+（等我把服务器钱赚出来就给大家用！！！！！！！！！！！！
 
 ## 通用设置
 
