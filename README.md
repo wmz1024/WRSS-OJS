@@ -1,8 +1,8 @@
 # WRSS - Material Desgin 风格 RSS 订阅器
 
-## 备注
+## 设置文档
 
-别名 WFeed
+[./docs/Setting.md]
 
 ## 开发时备注
 
