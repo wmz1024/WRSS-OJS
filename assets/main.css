@@ -10,7 +10,7 @@
 .rss-item {
     padding: 10px;
     border-bottom: 1px solid #ddd;
-    white-space: pre-wrap;
+    
     word-break: break-word;
 }
 
