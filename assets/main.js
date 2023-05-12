@@ -47,6 +47,15 @@ function loadJSFile(url) {
       }
   }
 
+  function loadCSSFile(url) {
+    if (!document.querySelector(`link[rel="${url}"]`)) {
+        const script = document.createElement('link');
+        script.setAttribute('rel', 'stylesheet');
+        script.setAttribute('href', url);
+        document.head.appendChild(script);
+      }
+  }
+
 function loadPage(a,urlcb) {
     function exitPage() {
         document.getElementById("Main")
@@ -62,6 +71,8 @@ function loadPage(a,urlcb) {
         document.querySelector(".welcome-WFeed").innerHTML = "👋 欢迎来到WFeed";
         document.querySelector(".info-extra").innerHTML=``
         mRSSload(getListpa(localStorage.getItem("rsssubdata"), "url"))
+        if(localStorage.getItem("FBSet") && localStorage.getItem("FBSet")=="true"){loadJSFile("https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js");loadCSSFile("https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css");loadJSFile("/assets/utils/fbextra.js")}
+
     } else if (a == "setting") {
         document.getElementById("Setting")
             .style = "display: block;";
@@ -216,20 +227,30 @@ function loadRSSFeed(e) {
                         default:
                             a("Unknown RSS/Atom format")
                     }
-                } else 4 == s.readyState && a("Unable to load RSS feed")
+                } else {
+                    //n++
+                }
             };
-            
+            try{
             if(localStorage.getItem("XMLProxyURL")){
                 s.open("GET", localStorage.getItem("XMLProxyURL")+e[n]);
             }else{
                 s.open("GET", e[n]);
+            }}
+            catch(err){
+                console.log(err)
             }
-            s.send();
+            try{
+            s.send();}
+            catch(err){
+                
+            }
         });
         t.push(a)
     };
     return Promise.all(t)
 }
+
 
 function mRSSload(e) {
     loadRSSFeed(e)

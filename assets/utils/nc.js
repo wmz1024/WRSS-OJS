@@ -43,6 +43,10 @@ function LoadNC(){
     <input type="checkbox" id="TSSet" />
     <i class="mdui-switch-icon"></i>
 </label>&nbsp;&nbsp;发布时间排序</span></div>
+<div class="cadata01"><strong>测试功能 图片启用Fancybox</strong>  <span>关闭&nbsp;&nbsp;<label class="mdui-switch">
+    <input type="checkbox" id="FBSet" />
+    <i class="mdui-switch-icon"></i>
+</label>&nbsp;&nbsp;启用</span></div>
 <div class="cadata01"><strong>XML订阅代理</strong>
 <div class="mdui-textfield">
 <label class="mdui-textfield-label">链接</label>
@@ -101,6 +105,7 @@ document.getElementById('import-file').onchange = function () {
     reader.readAsText(file);
   };
 bindSwitchStateWithLocalStorage(document.querySelector('#TSSet').parentNode, 'TSSet');
+bindSwitchStateWithLocalStorage(document.querySelector('#FBSet').parentNode, 'FBSet');
 
 var setjsa = {
     data: {
