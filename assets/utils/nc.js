@@ -36,8 +36,10 @@ function LoadNC(){
     document.getElementById("SettingO").innerHTML =`
     <div class="mdui-typo-headline" style="padding-left: 0.5rem;padding-top: 0.5rem;"><strong>通用</strong></div>
     <div id="SettingO-MainA" class="mdui-card-content">
-    <button class="mdui-btn mdui-color-theme-accent" id="export-btn" onclick="downloadData()">导出配置</button>
-    <label class="mdui-btn mdui-btn-raised mdui-color-theme-accent" for="import-file">导入配置<input type="file" id="import-file" accept=".json" style="display:none;"></label>
+    <div class="cadata01"><strong>启用HighLight</strong>  <span>&nbsp;&nbsp;<label class="mdui-switch">
+    <input type="checkbox" id="HLSet" />
+    <i class="mdui-switch-icon"></i>
+</label>&nbsp;&nbsp;</span></div>
     <div class="cadata01"><strong>不使用公共XML代理</strong>  <span>&nbsp;&nbsp;<label class="mdui-switch">
     <input type="checkbox" id="XPSet" />
     <i class="mdui-switch-icon"></i>
@@ -93,23 +95,10 @@ function bindSwitchStateWithLocalStorage(switchElement, localStorageKey) {
   }
 
 LoadNC()
-document.getElementById('import-file').onchange = function () {
-    const file = this.files[0];
-    const reader = new FileReader();
-    reader.onload = function () {
-      const data = JSON.parse(reader.result);
-      localStorage.setItem('rsssubdata', data); // 存储到LocalStorage
-      renderFeedList()
-      mdui.snackbar({
-        message: '导入成功！',
-        position: 'right-bottom'
-      });
-    };
-    reader.readAsText(file);
-  };
 bindSwitchStateWithLocalStorage(document.querySelector('#TSSet').parentNode, 'TSSet');
 bindSwitchStateWithLocalStorage(document.querySelector('#FBSet').parentNode, 'FBSet');
 bindSwitchStateWithLocalStorage(document.querySelector('#XPSet').parentNode, 'XPSet');
+bindSwitchStateWithLocalStorage(document.querySelector('#HLSet').parentNode, 'HLSet');
 
 var setjsa = {
     data: {
@@ -202,8 +191,11 @@ var setjsa = {
 };
 function LoadNS(){
     document.getElementById("SettingI").innerHTML = `
-    <form id="add-form" class="">
     <div class="mdui-typo-headline" style="padding-left: 0.5rem;padding-top: 0.5rem;"><strong>订阅管理</strong></div>
+    <div class="mdui-card-content">
+    <button class="mdui-btn mdui-color-theme-accent" id="export-btn" onclick="downloadData()">导出</button>
+    <label class="mdui-btn mdui-btn-raised mdui-color-theme-accent" for="import-file">导入<input type="file" id="import-file" accept=".json" style="display:none;"></label></div>
+    <form id="add-form" class="">
     <div class="mdui-card-content">
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">站点名</label>
@@ -227,4 +219,18 @@ function LoadNS(){
     `
 }
 LoadNS()
+document.getElementById('import-file').onchange = function () {
+    const file = this.files[0];
+    const reader = new FileReader();
+    reader.onload = function () {
+      const data = JSON.parse(reader.result);
+      localStorage.setItem('rsssubdata', data); // 存储到LocalStorage
+      renderFeedList()
+      mdui.snackbar({
+        message: '导入成功！',
+        position: 'right-bottom'
+      });
+    };
+    reader.readAsText(file);
+  };
 setjsa.init()
