@@ -1,4 +1,5 @@
 const XMLProxy4ever = "https://feed-api.wmza.top/xml.php?origin=";
+pa = new URLSearchParams(location.hash.substr(1));
 var datavc = {
     ipu: localStorage.getItem("ImageProxyURL")
 }
@@ -99,7 +100,8 @@ function loadPage(a, urlcb) {
     }else if(a == "feature"){document.querySelector(".info-extra").innerHTML = ``;
     document.getElementById("Feature")
     .style = "display: block;";
-    document.querySelector(".welcome-WFeed-feature").innerHTML = "Feature - "+urlcb;
+    console.log(urlcb);
+    loadJSFile("/assets/feature/init.js");
 }
 };
 
@@ -124,8 +126,9 @@ function deLoadPage() {
             .toLowerCase())
     }
 };
+
 deLoadPage();
-window.addEventListener('hashchange', function () {
+window.addEventListener('popstate', function () {
     deLoadPage();
 }, false);
 
