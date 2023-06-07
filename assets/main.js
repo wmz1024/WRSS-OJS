@@ -1,4 +1,7 @@
-const XMLProxy4ever = "https://feed-api.wmza.top/xml.php?origin=";
+// const XMLProxy4ever = "https://feed-api.wmza.top/xml.php?origin=";
+
+const XMLProxy4ever = "https://api3.wmza.cn/feed/xml.php?origin=";
+
 pa = new URLSearchParams(location.hash.substr(1));
 var datavc = {
     ipu: localStorage.getItem("ImageProxyURL")
