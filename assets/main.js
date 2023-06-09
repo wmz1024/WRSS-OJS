@@ -302,7 +302,7 @@ function checkUpdate(){
           });
           mdui.snackbar({
             message: '🎆 WRSS有新版本',
-            position: 'bottom-right',
+            position: 'right-bottom',
             buttonText: '更新',
             onButtonClick: function(){
                 location.reload();
