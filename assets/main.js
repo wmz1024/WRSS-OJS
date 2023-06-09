@@ -300,6 +300,15 @@ function checkUpdate(){
               registration.unregister();
             }
           });
+          // 删除名为 my-cache 的缓存
+caches.delete('app-cache')
+.then(() => {
+  console.log('Cache deleted successfully!');
+})
+.catch(error => {
+  console.error('Failed to delete cache:', error);
+});
+
           mdui.snackbar({
             message: '🎆 WRSS有新版本',
             position: 'right-bottom',
