@@ -77,6 +77,19 @@ mdui-theme-layout-auto">
   <!-- 加载MDUI脚本 -->
   <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
   <script disable-devtool-auto src="./assets/main.js"></script>
+  <script>setInterval(function() {
+    if (navigator.onLine) {
+      console.log('[WRSS-OnlineTest] Online!');
+    } else {
+        console.log('[WRSS-OnlineTest] Not Online!');
+        document.getElementById("rss-feed").innerHTML = `
+        <div style="margin:auto;">
+            <h1>_(:з」∠)_</h1>
+            <p>您的设备无法访问互联网 无法使用WRSS的大部分功能！</p>
+        </div>
+        `
+    }
+  }, 30000);</script>
 </body>
 
 </html>
