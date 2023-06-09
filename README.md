@@ -2,7 +2,8 @@
 
 ## 设置文档
 
-[./docs/Setting.md]
+[./docs/Setting.md](./docs/Setting.md)
+
 
 ## 开发时备注
 
