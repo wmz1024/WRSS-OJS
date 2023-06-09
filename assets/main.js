@@ -296,7 +296,7 @@ if ('serviceWorker' in navigator) {
           localStorage.version = data.version;
           mdui.snackbar({
             message: '🎆 WRSS有新版本',
-            position: 'bottom',
+            position: 'bottom-right',
             buttonText: '更新',
             onClick: function(){
                 navigator.serviceWorker.getRegistrations().then(function(registrations) {
