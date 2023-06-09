@@ -290,11 +290,11 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js');
   }
 function checkUpdate(){
-    fetch('/config.json').then(function(response) {
+    fetch('https://api3.wmza.cn/feed/check/update.php').then(function(response) {
         return response.json();
       }).then(function(data) {
-        if (data.version !== localStorage.version) {
-          localStorage.version = data.version;
+        if (data[0].sha !== localStorage.version) {
+          localStorage.version = data[0].sha;
           navigator.serviceWorker.getRegistrations().then(function(registrations) {
             for (let registration of registrations) {
               registration.unregister();
