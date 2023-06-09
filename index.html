@@ -77,9 +77,20 @@ mdui-theme-layout-auto">
   <!-- 加载MDUI脚本 -->
   <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
   <script disable-devtool-auto src="./assets/main.js"></script>
-  <script>setInterval(function() {
-    if (navigator.onLine) {
+  <script>
+    var onlinetestd = true;
+  function onlinetest(){if (navigator.onLine) {
       console.log('[WRSS-OnlineTest] Online!');
+     if(onlinetestd==false){
+      mdui.snackbar({
+            message: '🎆 WRSS恢复互联网连接',
+            position: 'bottom-right',
+          });
+      onlinetestd=true;
+      document.getElementById("rss-feed").innerHTML = `
+        `
+      document.write("<script disable-devtool-auto src='./assets/main.js'><\/script>")
+     }
     } else {
         console.log('[WRSS-OnlineTest] Not Online!');
         document.getElementById("rss-feed").innerHTML = `
@@ -88,7 +99,17 @@ mdui-theme-layout-auto">
             <p>您的设备无法访问互联网 无法使用WRSS的大部分功能！</p>
         </div>
         `
-    }
+        if(onlinetestd==true){
+          onlinetestd=false;
+      mdui.snackbar({
+            message: '🎆 WRSS失去互联网连接',
+            position: 'bottom-right',
+          });
+     }
+
+    }}
+    onlinetest()
+  setInterval(function() {onlinetest()
   }, 30000);</script>
 </body>
 

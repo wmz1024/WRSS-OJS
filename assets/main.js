@@ -303,7 +303,7 @@ if ('serviceWorker' in navigator) {
             message: '🎆 WRSS有新版本',
             position: 'bottom-right',
             buttonText: '更新',
-            onClick: function(){
+            onButtonClick: function(){
                 location.reload();
               },
           });
