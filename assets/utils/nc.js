@@ -12,6 +12,16 @@ function ImageProxySubmit(){
       position: 'right-bottom'
     });
 }
+function checkUpdateM(){
+    navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+      // 删除名为 my-cache 的缓存
+caches.delete('app-cache')
+}
+
 function downloadFile(data, filename, type) {
     const file = new Blob([data], {type: type});
     const a = document.createElement('a');
@@ -66,6 +76,14 @@ function LoadNC(){
 <input class="mdui-textfield-input" type="text" id="ImageProxyinput">
 </div>
 <button class="mdui-btn mdui-color-theme-accent mdui-ripple" id="ImageProxyinputsubmit" onclick="ImageProxySubmit()">提交</button>
+</div>
+
+<div class="mdui-typo-headline" style="padding-left: 0.5rem;padding-top: 0.5rem;"><strong>PWA</strong></div>
+
+<div class="cadata01">
+<strong>关于PWA更新</strong>
+<button class="mdui-btn mdui-color-theme-accent mdui-ripple" onclick="checkUpdate()">检查更新</button>
+<button class="mdui-btn mdui-color-theme-accent mdui-ripple" onclick="checkUpdateM()">强制更新</button>
 </div>
 
 </div>
