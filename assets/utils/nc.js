@@ -81,7 +81,7 @@ function LoadNC(){
 <div class="mdui-typo-headline" style="padding-left: 0.5rem;padding-top: 0.5rem;"><strong>PWA</strong></div>
 
 <div class="cadata01">
-<strong>关于PWA更新</strong>
+<strong>关于PWA更新</strong><br>
 <button class="mdui-btn mdui-color-theme-accent mdui-ripple" onclick="checkUpdate()">检查更新</button>
 <button class="mdui-btn mdui-color-theme-accent mdui-ripple" onclick="checkUpdateM()">强制更新</button>
 </div>
