@@ -20,6 +20,7 @@ function checkUpdateM(){
       });
       // 删除名为 my-cache 的缓存
 caches.delete('app-cache')
+location.reload()
 }
 
 function downloadFile(data, filename, type) {
