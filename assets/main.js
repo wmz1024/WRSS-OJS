@@ -148,13 +148,13 @@ function renderRSSFeed(e) {
     });
     var a = "";
     for (n = 0; n < t.length; n++) {
-        var s = '<li class="mdui-list-item rss-item"><div class="mdui-row"><div class="mdui-col-xs-12"><div class="rss-title"><a href="' + t[n].link + '">' + t[n].title + "</a></div>" + `
+        var s = '<li class="mdui-list-item rss-item"><div class="mdui-row"><div class="mdui-col-xs-12"><div class="rss-title"><a href="' + t[n].link + '" target="_blank">' + t[n].title + "</a></div>" + `
         <div class="rss-item-info"><span class="rss-date">${t[n].pubDate.toLocaleString()}</span><span class='rss-author'>&nbsp;作者: ${t[n].author}</span></div>
         `,
             r = t[n].description,
             i = r.match(/<img [^>]*src="([^"]+)"[^>]*>/);
         if (null != i) s += '<div class="rss-image"><img src="' + i[1] + '"></div>';
-        a += s += '<div class="rss-description">' + r + '</div><div class="rss-link"><a href="' + t[n].link + '">阅读全文</a></div></li>'
+        a += s += '<div class="rss-description">' + r + '</div><div class="rss-link"><a href="' + t[n].link + '" target="_blank">阅读全文</a></div></li>'
     }
     document.getElementById("rss-feed")
         .innerHTML = a
