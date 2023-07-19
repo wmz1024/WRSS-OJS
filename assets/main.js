@@ -122,6 +122,7 @@ function deLoadPage() {
 deLoadPage();
 window.addEventListener('popstate', function () {
     deLoadPage();
+    onlinetest()
 }, false);
 
 function renderFeedList() {
