@@ -84,11 +84,11 @@ mdui-theme-layout-auto">
      if(onlinetestd==false){
       mdui.snackbar({
             message: '🎆 WRSS恢复互联网连接',
-            position: 'bottom-right',
+            position: 'right-bottom',
           });
       onlinetestd=true;
       document.getElementById("rss-feed").innerHTML = `
-      <p><a href="#Main">刷新页面</a></p>
+      <p><a onclick="reloadApp()">刷新页面</a></p>
         `
      }
     } else {
@@ -110,7 +110,13 @@ mdui-theme-layout-auto">
     }}
     onlinetest()
   setInterval(function() {onlinetest()
-  }, 30000);</script>
+  }, 30000);
+  function reloadApp(){
+    window.location.reload();
+  }
+console.log(`%c WRSS %c Made with ❤️ by Wmz1024 `,'background: #e19385; padding: 4px; border-radius: 3px 0 0 3px; color: #fff', 
+'background: #41b883; padding: 4px; border-radius: 0 3px 3px 0; color: #fff',)
+  </script>
 </body>
 
 </html>

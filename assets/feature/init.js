@@ -2,25 +2,27 @@ function featFileNF(){
     document.querySelector(".welcome-WFeed-feature").innerHTML = "Feature - Not Found";
 }
 
-function featFileF(filename){
-    loadJSFile("/assets/feature/"+filename+".js")
-    document.querySelector(".welcome-WFeed-feature").innerHTML = "Feature - "+filename;
-}
-
 function initFeature() {
     document.querySelector(".feature-content").innerHTML='';
     var featInitP = new URLSearchParams(location.hash.substr(1)).get("feature");
-    fetch('/assets/feature/'+featInitP+".js")
+        
+        const featureContentElement = document.querySelector('.feature-content');
+
+        fetch('/assets/feature/html/'+featInitP+".html")
         .then(response => {
-            if (response.status === 200) {
-                featFileF(featInitP)
-            } else if (response.status === 404) {
-                featFileNF()
-            } else {
-                featFileNF()
-            }
+          if (!response.ok) {
+            throw new Error('文件未找到');
+          }
+          return response.text();
         })
-        .catch(error => console.error(error));
+        .then(html => {
+          featureContentElement.innerHTML = html;
+        })
+        .catch(error => {
+          console.error('发生错误:', error);
+          featFileNF()
+        });
+        
 }
 
 initFeature()
