@@ -3,6 +3,7 @@ function featFileNF(){
 }
 
 function initFeature() {
+  
     document.querySelector(".feature-content").innerHTML='';
     var featInitP = new URLSearchParams(location.hash.substr(1)).get("feature");
         
@@ -10,7 +11,7 @@ function initFeature() {
 
         fetch('/assets/feature/html/'+featInitP+".html")
         .then(response => {
-          if (!response.ok) {
+          if (response.status==404) {
             throw new Error('文件未找到');
           }
           return response.text();
@@ -20,7 +21,8 @@ function initFeature() {
         })
         .catch(error => {
           console.error('发生错误:', error);
-          featFileNF()
+          if (featInitP!=null)
+          {featFileNF()}
         });
         
 }
@@ -29,4 +31,5 @@ initFeature()
 
 window.addEventListener('popstate', function () {
     initFeature()
+    document.querySelector(".welcome-WFeed-feature").innerHTML = '';
 }, false);
