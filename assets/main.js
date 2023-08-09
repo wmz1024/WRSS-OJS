@@ -1,5 +1,64 @@
 // const XMLProxy4ever = "https://feed-api.wmza.top/xml.php?origin=";
 
+function initApp(){
+    console.log(`%c WRSS %c Made with ❤️ by Wmz1024 `,'background: #e19385; padding: 4px; border-radius: 3px 0 0 3px; color: #fff', 
+    'background: #41b883; padding: 4px; border-radius: 0 3px 3px 0; color: #fff',);
+    document.getElementById("app").innerHTML=`
+    <header class="appbar mdui-appbar mdui-appbar-fixed">
+    <div class="mdui-toolbar mdui-color-theme">
+      <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"
+        mdui-drawer="{target: '#cadrawer', swipe: true}">
+        <i class="mdui-icon material-icons">menu</i>
+      </span>
+      <a class="mdui-typo-headline nav-title" href="#">WRSS</a>
+    </div>
+  </header>
+  <div class="mdui-drawer" id="cadrawer">
+    <ul class="mdui-list">
+      <a href="#page=Main">
+        <li class="mdui-list-item mdui-ripple">
+          <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
+          <div class="mdui-list-item-content">主页</div>
+        </li>
+      </a>
+      <a href="#page=Setting">
+        <li class="mdui-list-item mdui-ripple">
+          <i class="mdui-list-item-icon mdui-icon material-icons">settings</i>
+          <div class="mdui-list-item-content">设置</div>
+        </li>
+      </a>
+      <a href="#page=Feature&feature=market">
+        <li class="mdui-list-item mdui-ripple">
+          <i class="mdui-list-item-icon mdui-icon material-icons">local_mall</i>
+          <div class="mdui-list-item-content">插件市场</div>
+        </li>
+      </a>
+      <li class="mdui-subheader">您订阅的</li>
+      <div class="my-feed"></div>
+    </ul>
+  </div>
+  <div class="mdui-container">
+    <div id="Main">
+      <h1 class="mdui-typo-display-1 welcome-WFeed"></h1>
+      <div class="info-extra"></div>
+      <ul class="mdui-list" id="rss-feed">加载中！</ul>
+    </div>
+    <div id="Feature" style="display: none;"><h1 class="mdui-typo-display-1 welcome-WFeed-feature"></h1><div class="feature-content"></div></div>
+    <div id="Setting" style="display: none;">
+      <h1 class="mdui-typo-display-1 ">设置</h1><a href="./docs/#/Setting"><button
+          class="mdui-btn mdui-color-theme-accent mdui-ripple">设置文档</button></a><br>
+      <div id="SettingO">设置02组件状态: 加载中</div>
+      <div id="SettingI">设置01组件状态: 加载中</div>
+    </div>
+  </div>
+    `
+    console.log("[WRSS] Init App Success")
+    console.log("如出现问题，可尝试在本页输入 %creloadApp()%c 然后按回车重置应用。", "background: #e19385;color:#335eea;padding: 4px 6px;border-radius:3px;", "background:unset;color:unset;")
+
+}
+
+initApp()
+
 const XMLProxy4ever = "https://api3.wmza.cn/feed/xml.php?origin=";
 
 pa = new URLSearchParams(location.hash.substr(1));
@@ -327,3 +386,40 @@ caches.delete('app-cache')
     checkUpdate()
   }, 600000);
 checkUpdate()
+
+var onlinetestd = true;
+function onlinetest(){if (navigator.onLine) {
+    console.log('[WRSS-OnlineTest] Online!');
+   if(onlinetestd==false){
+    mdui.snackbar({
+          message: '🎆 WRSS恢复互联网连接',
+          position: 'right-bottom',
+        });
+    onlinetestd=true;
+    document.getElementById("rss-feed").innerHTML = `
+    <p><a onclick="reloadApp()">刷新页面</a></p>
+      `
+   }
+  } else {
+      console.log('[WRSS-OnlineTest] Not Online!');
+      document.getElementById("rss-feed").innerHTML = `
+      <div style="margin:auto;">
+          <h1>_(:з」∠)_</h1>
+          <p>您的设备无法访问互联网 无法使用WRSS的大部分功能！</p>
+      </div>
+      `
+      if(onlinetestd==true){
+        onlinetestd=false;
+    mdui.snackbar({
+          message: '🎆 WRSS失去互联网连接',
+          position: 'right-bottom',
+        });
+   }
+
+  }}
+  onlinetest()
+setInterval(function() {onlinetest()
+}, 30000);
+function reloadApp(){
+  window.location.reload();
+}
