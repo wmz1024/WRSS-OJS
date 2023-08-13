@@ -11,6 +11,10 @@ function initApp(){
         <i class="mdui-icon material-icons">menu</i>
       </span>
       <a class="mdui-typo-headline nav-title" href="#">WRSS</a>
+      <div class="mdui-toolbar-spacer"></div>
+  <a id="installApp" title="把WRSS安装在您的设备里" onclick="appInstallEvent.prompt()" class="mdui-btn mdui-btn-icon">
+    <i class="mdui-icon material-icons">exit_to_app</i>
+  </a>
     </div>
   </header>
   <div class="mdui-drawer" id="cadrawer">
@@ -54,6 +58,9 @@ function initApp(){
     `
     console.log("[WRSS] Init App Success")
     console.log("如出现问题，可尝试在本页输入 %creloadApp()%c 然后按回车重置应用。", "background: #e19385;color:#335eea;padding: 4px 6px;border-radius:3px;", "background:unset;color:unset;")
+    document.getElementById("installApp").style=`
+    display:none;
+    `
 
 }
 
@@ -423,3 +430,11 @@ setInterval(function() {onlinetest()
 function reloadApp(){
   window.location.reload();
 }
+
+var appInstallEvent=null
+window.addEventListener("beforeinstallprompt" , e=>{
+appInstallEvent=e;
+document.getElementById("installApp").style=`
+display:block;
+`;
+})
