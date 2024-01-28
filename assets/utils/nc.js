@@ -81,7 +81,7 @@ function LoadNC(){
 
 <div class="mdui-typo-headline" style="padding-left: 0.5rem;padding-top: 0.5rem;"><strong>PWA</strong></div>
 
-<div class="cadata01">
+<div class="cadata01" style="padding-left: 0.5rem;padding-top: 0.5rem;">
 <strong>关于PWA更新</strong><br>
 <button class="mdui-btn mdui-color-theme-accent mdui-ripple" onclick="checkUpdate()">检查更新</button>
 <button class="mdui-btn mdui-color-theme-accent mdui-ripple" onclick="checkUpdateM()">强制更新</button>
@@ -218,11 +218,11 @@ function LoadNS(){
     <div class="mdui-card-content">
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">站点名</label>
-            <input class="mdui-textfield-input" type="text" name="name">
+            <input class="mdui-textfield-input rss-name" type="text" name="name">
         </div>
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">RSS/ATOM链接</label>
-            <input class="mdui-textfield-input" type="text" name="url">
+            <input class="mdui-textfield-input rss-url" type="text" name="url">
         </div>
     </div>
     <div class="mdui-card-actions">
