@@ -66,6 +66,11 @@ function initApp(){
 
 initApp()
 
+function addfeed(url){
+    document.querySelector(".rss-url").value=url
+    document.getElementById("feedmanager").scrollIntoView();
+}
+
 // const XMLProxy4ever = "https://api3.wmza.cn/feed/xml.php?origin=";
 
 pa = new URLSearchParams(location.hash.substr(1));
@@ -151,7 +156,7 @@ function loadPage(a, urlcb) {
         else {
             document.querySelector(".welcome-WFeed").innerHTML = "陌生订阅";
             document.querySelector(".info-extra").innerHTML = `
-<span>订阅地址: ${urlcb} </span><a>添加到WRSS （暂不支持）</a>
+<span>订阅地址: ${urlcb} </span><a href="#page=Setting&action=add" onclick="addfeed('${urlcb}')">添加到WRSS</a>
             `
         }
         mRSSload([urlcb])

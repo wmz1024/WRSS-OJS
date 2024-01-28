@@ -210,7 +210,7 @@ var setjsa = {
 };
 function LoadNS(){
     document.getElementById("SettingI").innerHTML = `
-    <div class="mdui-typo-headline" style="padding-left: 0.5rem;padding-top: 0.5rem;"><strong>订阅管理</strong></div>
+    <div class="mdui-typo-headline" id="feedmanager" style="padding-left: 0.5rem;padding-top: 0.5rem;"><strong>订阅管理</strong></div>
     <div class="mdui-card-content">
     <button class="mdui-btn mdui-color-theme-accent" id="export-btn" onclick="downloadData()">导出</button>
     <label class="mdui-btn mdui-btn-raised mdui-color-theme-accent" for="import-file">导入<input type="file" id="import-file" accept=".json" style="display:none;"></label></div>
