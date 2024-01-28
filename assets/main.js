@@ -1,4 +1,4 @@
-const XMLProxy4ever = "https://sv02b.awa.gs/api/feed-fetch.php";
+const XMLProxy4ever = "https://sv02b.awa.gs/api/feed-fetch.php?feed=";
 
 function initApp(){
     console.log(`%c WRSS %c Made with ❤️ by Wmz1024 `,'background: #e19385; padding: 4px; border-radius: 3px 0 0 3px; color: #fff', 
