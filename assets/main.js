@@ -357,7 +357,7 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js');
   }
 function checkUpdate(){
-    fetch('https://api3.wmza.cn/feed/check/update.php').then(function(response) {
+    fetch('https://sv02b.awa.gs/api/feed-checkupdate.php').then(function(response) {
         return response.json();
       }).then(function(data) {
         if (data[0].sha !== localStorage.version) {
