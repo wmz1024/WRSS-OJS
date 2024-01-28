@@ -68,7 +68,6 @@ initApp()
 
 function addfeed(url){
     document.querySelector(".rss-url").value=url;
-    setTimeout(() => document.getElementById("feedmanager").scrollIntoView(), 1500);
 }
 
 // const XMLProxy4ever = "https://api3.wmza.cn/feed/xml.php?origin=";
@@ -145,6 +144,9 @@ function loadPage(a, urlcb) {
             .style = "display: block;";
         document.querySelector(".info-extra").innerHTML = ``
         loadJSFile("/assets/utils/nc.js")
+        if(pa.get("action")=="add"){
+            document.getElementById("feedmanager").scrollIntoView();
+        }
     } else if (a == "loadfeed") {
         document.getElementById("Main")
             .style = "display: block;";
