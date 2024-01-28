@@ -236,11 +236,11 @@ function LoadNS(){
     </div>
 </div>
     `
+    if(pa.get("action")=="add"){
+        document.getElementById("feedmanager").scrollIntoView();
+    }
 }
 LoadNS()
-if(pa.get("action")=="add"){
-    document.getElementById("feedmanager").scrollIntoView();
-}
 document.getElementById('import-file').onchange = function () {
     const file = this.files[0];
     const reader = new FileReader();
