@@ -1,4 +1,4 @@
-// const XMLProxy4ever = "https://feed-api.wmza.top/xml.php?origin=";
+const XMLProxy4ever = "https://sv02b.awa.gs/api/feed-fetch.php";
 
 function initApp(){
     console.log(`%c WRSS %c Made with ❤️ by Wmz1024 `,'background: #e19385; padding: 4px; border-radius: 3px 0 0 3px; color: #fff', 
