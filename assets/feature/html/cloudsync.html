@@ -1,0 +1,93 @@
+<div class="feature_cs">
+    <div class="feature_cs_main">
+        <span class="mdui-typo-display-1">☁️ CLoudSync</span>
+        <a href="/docs/#/cloudsync"><span>查看文档</span></a>
+        <div>
+            <form id="upload-form">
+                <label for="username">Github 用户名：</label>
+                <input type="text" id="username" name="username"><br>
+        
+                <label for="repo">Github 仓库名称：</label>
+                <input type="text" id="repo" name="repo"><br>
+        
+                <label for="filename">上传文件名：</label>
+                <input type="text" id="filename" name="filename"><br>
+        
+                <label for="token">Github Personal Access Token：</label>
+                <input type="text" id="token" name="token"><br>
+        
+                <input type="submit" value="上传">
+            </form>
+        
+            <button id="download-button">下载文件</button>
+            <button id="save-config-button">保存配置</button>
+        </div>
+    </div>
+    <style class="feature_cs_style">
+
+    </style>
+    <script>
+        const form = document.getElementById('upload-form');
+        const downloadButton = document.getElementById('download-button');
+        const saveConfigButton = document.getElementById('save-config-button');
+
+        // 从 localStorage 加载数据填充到输入框
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedConfig = JSON.parse(localStorage.getItem('githubConfig')) || {};
+            form.elements.username.value = savedConfig.username || '';
+            form.elements.repo.value = savedConfig.repo || '';
+            form.elements.filename.value = savedConfig.filename || '';
+            form.elements.token.value = savedConfig.token || '';
+        });
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const username = form.elements.username.value;
+            const repo = form.elements.repo.value;
+            const filename = form.elements.filename.value;
+            const data = JSON.stringify(localStorage.getItem('rsssubdata'));
+            const token = form.elements.token.value;
+
+            const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/${filename}`;
+            const requestData = {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `token ${token}`
+                },
+                body: JSON.stringify({
+                    message: `Upload ${filename} via API`,
+                    content: btoa(data)
+                })
+            };
+
+            fetch(apiUrl, requestData)
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error(error));
+        });
+
+        downloadButton.addEventListener('click', () => {
+            const username = form.elements.username.value;
+            const repo = form.elements.repo.value;
+            const filename = form.elements.filename.value;
+
+            const downloadUrl = `https://raw.githubusercontent.com/${username}/${repo}/main/${filename}`;
+            
+            fetch(downloadUrl)
+                .then(response => response.text())
+                .then(data => importConfig(data))
+                .catch(error => console.error(error));
+        });
+
+        saveConfigButton.addEventListener('click', () => {
+            const config = {
+                username: form.elements.username.value,
+                repo: form.elements.repo.value,
+                filename: form.elements.filename.value,
+                token: form.elements.token.value
+            };
+            localStorage.setItem('githubConfig', JSON.stringify(config));
+        });
+    </script>
+</div>
