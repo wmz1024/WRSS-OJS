@@ -67,8 +67,8 @@ function initApp(){
 initApp()
 
 function addfeed(url){
-    document.querySelector(".rss-url").value=url
-    document.getElementById("feedmanager").scrollIntoView();
+    document.querySelector(".rss-url").value=url;
+    setTimeout(() => document.getElementById("feedmanager").scrollIntoView(), 1500);
 }
 
 // const XMLProxy4ever = "https://api3.wmza.cn/feed/xml.php?origin=";
