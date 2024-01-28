@@ -144,9 +144,6 @@ function loadPage(a, urlcb) {
             .style = "display: block;";
         document.querySelector(".info-extra").innerHTML = ``
         loadJSFile("/assets/utils/nc.js")
-        if(pa.get("action")=="add"){
-            document.getElementById("feedmanager").scrollIntoView();
-        }
     } else if (a == "loadfeed") {
         document.getElementById("Main")
             .style = "display: block;";
